@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6581443949971158542}
   - component: {fileID: 9215003244446898577}
   - component: {fileID: 8077591987124323892}
+  - component: {fileID: -1313279622708035150}
   m_Layer: 0
   m_Name: Platform Move 520
   m_TagString: Untagged
@@ -220,6 +221,18 @@ MonoBehaviour:
   m_StartingSingleGrabTransformers: []
   m_StartingMultipleGrabTransformers: []
   m_AddDefaultGrabTransformers: 1
+--- !u!114 &-1313279622708035150
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4652329573806549489}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f739e465ebb8ca34cb2e566db7529099, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6978180276376833145
 GameObject:
   m_ObjectHideFlags: 0
