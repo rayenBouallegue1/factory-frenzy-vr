@@ -21,11 +21,28 @@ public class VRDeleteTool : MonoBehaviour
     [SerializeField] private Color hoverColor = Color.red;
     [SerializeField] private float deleteDelay = 0.2f;
 
+    [Header("Feedback FP1-6")]
+    [SerializeField] private VRFeedbackManager feedback;
+    [SerializeField] private bool useRightHand = true;
+
+    [Header("Delete Mode Sound")]
+    [SerializeField] private AudioClip deleteModeSfx;
+
     private Renderer lastRenderer;
     private Color[] lastColors;
 
+    // ✅ Anti-spam / anti double delete
+    private bool isDeleting = false;
+
     private void Awake()
     {
+        // ✅ Auto-find si pas branché dans l’Inspector
+#if UNITY_2023_1_OR_NEWER
+        if (feedback == null) feedback = FindFirstObjectByType<VRFeedbackManager>();
+#else
+        if (feedback == null) feedback = FindObjectOfType<VRFeedbackManager>();
+#endif
+
         SetDeleteMode(false); // mode normal par défaut
     }
 
@@ -37,15 +54,31 @@ public class VRDeleteTool : MonoBehaviour
             deleteModeText.SetActive(deleteMode);
 
         WriteDebug("Mode=" + (deleteMode ? "DELETE" : "NORMAL"));
-        if (!deleteMode) ClearHoverColor();
+
+        if (!deleteMode)
+        {
+            isDeleting = false;
+            ClearHoverColor();
+        }
+
+        //  SON quand on active le mode suppression
+        if (enabled && feedback != null)
+        {
+            // son + petite vibration (optionnelle)
+            if (enabled && feedback != null)
+            {
+                feedback.DeleteModeFeedback(useRightHand);
+            }
+        }
+
         Debug.Log("CALLED SetDeleteMode => " + enabled);
     }
 
     private void Update()
     {
-        if (!deleteMode)
+        if (!deleteMode || isDeleting)
         {
-            ClearHoverColor();
+            if (!deleteMode) ClearHoverColor();
             return;
         }
 
@@ -88,7 +121,13 @@ public class VRDeleteTool : MonoBehaviour
         if (rightController.activateAction.action != null &&
             rightController.activateAction.action.WasPressedThisFrame())
         {
+            // ✅ Feedback immédiat au clic (son + vibration forte)
+            if (feedback != null)
+                feedback.DeleteFeedback(useRightHand);
+
+            // ✅ Lance suppression (flash rouge + délai)
             StartCoroutine(DeleteWithRedFlash(deletable.gameObject));
+
             ClearHoverColor();
         }
     }
@@ -97,11 +136,15 @@ public class VRDeleteTool : MonoBehaviour
     {
         if (go == null) yield break;
 
+        isDeleting = true;
+
         ApplyHoverColor(go);
         yield return new WaitForSeconds(deleteDelay);
 
         if (go != null)
             Destroy(go);
+
+        isDeleting = false;
     }
 
     private void ApplyHoverColor(GameObject go)
