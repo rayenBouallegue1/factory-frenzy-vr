@@ -1,109 +1,161 @@
+using System.Collections;
 using UnityEngine;
-using UnityEngine.InputSystem;
 using UnityEngine.XR.Interaction.Toolkit;
 
 public class VRDeleteTool : MonoBehaviour
 {
-    [Header("Ray")]
+    [Header("Ray (Right Ray Interactor)")]
     [SerializeField] private XRRayInteractor ray;
 
-    [Header("Input")]
-    [SerializeField] private InputActionReference deleteAction; // ex: Trigger
+    [Header("Right Controller (Action-based)")]
+    [SerializeField] private ActionBasedController rightController;
+
+    [Header("UI")]
+    [SerializeField] private GameObject deleteModeText;   // "DELETE MODE ACTIVE" (GameObject)
+    [SerializeField] private TMPro.TextMeshProUGUI debugText; // optionnel (un texte debug dans le menu)
 
     [Header("Mode")]
-    public bool deleteMode = false;
+    [SerializeField] private bool deleteMode = false;
 
-    [Header("Highlight (optional)")]
-    [SerializeField] private Material highlightMaterial;
+    [Header("Visual")]
+    [SerializeField] private Color hoverColor = Color.red;
+    [SerializeField] private float deleteDelay = 0.2f;
 
     private Renderer lastRenderer;
-    private Material[] lastMats;
+    private Color[] lastColors;
 
-    private void OnEnable()
+    private void Awake()
     {
-        if (deleteAction != null) deleteAction.action.performed += OnDeletePressed;
-        if (deleteAction != null) deleteAction.action.Enable();
+        SetDeleteMode(false); // mode normal par défaut
     }
 
-    private void OnDisable()
+    public void SetDeleteMode(bool enabled)
     {
-        if (deleteAction != null) deleteAction.action.performed -= OnDeletePressed;
-        ClearHighlight();
+        deleteMode = enabled;
+
+        if (deleteModeText != null)
+            deleteModeText.SetActive(deleteMode);
+
+        WriteDebug("Mode=" + (deleteMode ? "DELETE" : "NORMAL"));
+        if (!deleteMode) ClearHoverColor();
+        Debug.Log("CALLED SetDeleteMode => " + enabled);
     }
 
     private void Update()
     {
         if (!deleteMode)
         {
-            ClearHighlight();
+            ClearHoverColor();
             return;
         }
 
-        // Raycast XR
-        if (ray != null && ray.TryGetCurrent3DRaycastHit(out RaycastHit hit))
+        // 1) Ray hit ?
+        if (ray == null)
         {
-            var deletable = hit.collider.GetComponentInParent<DeletableObject>();
-            if (deletable != null)
-                Highlight(deletable.gameObject);
-            else
-                ClearHighlight();
+            WriteDebug("ERREUR: Ray = NULL");
+            return;
         }
-        else
+
+        bool hitSomething = ray.TryGetCurrent3DRaycastHit(out RaycastHit hit);
+
+        if (!hitSomething)
         {
-            ClearHighlight();
+            ClearHoverColor();
+            WriteDebug("DELETE: no hit");
+            return;
+        }
+
+        var deletable = hit.collider.GetComponentInParent<DeletableObject>();
+        if (deletable == null)
+        {
+            ClearHoverColor();
+            WriteDebug("HIT: " + hit.collider.name + " (NOT deletable)");
+            return;
+        }
+
+        // 2) Hover rouge
+        ApplyHoverColor(deletable.gameObject);
+        WriteDebug("HIT deletable: " + deletable.name);
+
+        // 3) Input du contrôleur droit : Activate
+        if (rightController == null)
+        {
+            WriteDebug("ERREUR: RightController = NULL");
+            return;
+        }
+
+        // Trigger/Activate press
+        if (rightController.activateAction.action != null &&
+            rightController.activateAction.action.WasPressedThisFrame())
+        {
+            StartCoroutine(DeleteWithRedFlash(deletable.gameObject));
+            ClearHoverColor();
         }
     }
 
-    private void OnDeletePressed(InputAction.CallbackContext ctx)
+    private IEnumerator DeleteWithRedFlash(GameObject go)
     {
-        if (!deleteMode) return;
+        if (go == null) yield break;
 
-        if (ray != null && ray.TryGetCurrent3DRaycastHit(out RaycastHit hit))
-        {
-            var deletable = hit.collider.GetComponentInParent<DeletableObject>();
-            if (deletable != null)
-            {
-                // Suppression
-                Destroy(deletable.gameObject);
-                ClearHighlight();
-            }
-        }
+        ApplyHoverColor(go);
+        yield return new WaitForSeconds(deleteDelay);
+
+        if (go != null)
+            Destroy(go);
     }
 
-    public void SetDeleteMode(bool enabled)
+    private void ApplyHoverColor(GameObject go)
     {
-        deleteMode = enabled;
-        if (!deleteMode) ClearHighlight();
-    }
-
-    private void Highlight(GameObject go)
-    {
-        if (highlightMaterial == null) return;
-
         var r = go.GetComponentInChildren<Renderer>();
         if (r == null) return;
-
         if (lastRenderer == r) return;
 
-        ClearHighlight();
+        ClearHoverColor();
 
         lastRenderer = r;
-        lastMats = r.sharedMaterials;
+        var mats = r.materials;
+        lastColors = new Color[mats.Length];
 
-        // Ajoute un matériau de highlight en plus (simple)
-        var newMats = new Material[lastMats.Length + 1];
-        for (int i = 0; i < lastMats.Length; i++) newMats[i] = lastMats[i];
-        newMats[newMats.Length - 1] = highlightMaterial;
+        for (int i = 0; i < mats.Length; i++)
+        {
+            if (mats[i] == null) { lastColors[i] = Color.white; continue; }
 
-        r.materials = newMats;
+            if (mats[i].HasProperty("_BaseColor"))
+                lastColors[i] = mats[i].GetColor("_BaseColor");
+            else if (mats[i].HasProperty("_Color"))
+                lastColors[i] = mats[i].color;
+            else
+                lastColors[i] = Color.white;
+
+            if (mats[i].HasProperty("_BaseColor"))
+                mats[i].SetColor("_BaseColor", hoverColor);
+            if (mats[i].HasProperty("_Color"))
+                mats[i].color = hoverColor;
+        }
     }
 
-    private void ClearHighlight()
+    private void ClearHoverColor()
     {
-        if (lastRenderer != null && lastMats != null)
-            lastRenderer.materials = lastMats;
+        if (lastRenderer == null || lastColors == null) return;
+
+        var mats = lastRenderer.materials;
+        for (int i = 0; i < mats.Length && i < lastColors.Length; i++)
+        {
+            if (mats[i] == null) continue;
+
+            if (mats[i].HasProperty("_BaseColor"))
+                mats[i].SetColor("_BaseColor", lastColors[i]);
+            if (mats[i].HasProperty("_Color"))
+                mats[i].color = lastColors[i];
+        }
 
         lastRenderer = null;
-        lastMats = null;
+        lastColors = null;
+    }
+
+    private void WriteDebug(string msg)
+    {
+        if (debugText != null)
+            debugText.text = msg;
     }
 }
