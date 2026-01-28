@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 1652283684087946085}
   - component: {fileID: -8562668412036351397}
   - component: {fileID: -2665837225389089516}
+  - component: {fileID: -7916890426608412931}
+  - component: {fileID: -5975530991504309561}
   m_Layer: 0
   m_Name: Trap fan
   m_TagString: Untagged
@@ -59,7 +61,7 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 0
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -227,6 +229,43 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f739e465ebb8ca34cb2e566db7529099, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-7916890426608412931
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4652329573806549489}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56efd760c63929c47a361a97102ccaef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  snapGroup: 1
+  pivot: {fileID: 6581443949971158542}
+--- !u!114 &-5975530991504309561
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4652329573806549489}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e061fe2b09e6fdd4698560965ad17f16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  smartMode: 1
+  rotationStep: 10
+  extraSnapRadius: 0.05
+  snapPointLayer:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  inputSource: 5
+  toggleButton: 6
+  toggleThreshold: 0.1
+  snapRotationToPoint: 1
+  markSnapPointOccupied: 1
 --- !u!1001 &910115789156857328
 PrefabInstance:
   m_ObjectHideFlags: 0
