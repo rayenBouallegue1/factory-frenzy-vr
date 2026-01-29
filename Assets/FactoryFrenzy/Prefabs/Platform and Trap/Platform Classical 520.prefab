@@ -12,9 +12,7 @@ GameObject:
   - component: {fileID: 4722673991461556797}
   - component: {fileID: 5955137488155628214}
   - component: {fileID: 7871271582446337293}
-  - component: {fileID: 2456507072486908300}
-  - component: {fileID: -7593734770425396383}
-  - component: {fileID: -6080478655188568644}
+  - component: {fileID: 8472067204270174566}
   m_Layer: 0
   m_Name: Platform Classical 520
   m_TagString: Untagged
@@ -121,7 +119,19 @@ MonoBehaviour:
       m_Calls: []
   m_SelectEntered:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_SelectExited:
     m_PersistentCalls:
       m_Calls: []
@@ -235,44 +245,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f739e465ebb8ca34cb2e566db7529099, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &2456507072486908300
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4652329573806549489}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e061fe2b09e6fdd4698560965ad17f16, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  smartMode: 1
-  rotationStep: 10
-  extraSnapRadius: 0.05
-  snapPointLayer:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  inputSource: 5
-  toggleButton: 6
-  toggleThreshold: 0.1
-  snapRotationToPoint: 1
-  markSnapPointOccupied: 1
---- !u!114 &-7593734770425396383
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4652329573806549489}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 56efd760c63929c47a361a97102ccaef, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  snapGroup: 1
-  pivot: {fileID: 6581443949971158542}
---- !u!64 &-6080478655188568644
+--- !u!64 &8472067204270174566
 MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

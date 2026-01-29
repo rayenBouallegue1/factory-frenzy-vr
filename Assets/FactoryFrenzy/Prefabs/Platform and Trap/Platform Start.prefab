@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 1334230754548927444}
   - component: {fileID: -31948276212164226}
   - component: {fileID: 3702866710562466056}
-  - component: {fileID: -4101329059596254645}
+  - component: {fileID: -3192050078813053209}
   m_Layer: 0
   m_Name: Platform Start
   m_TagString: Untagged
@@ -197,7 +197,19 @@ MonoBehaviour:
       m_Calls: []
   m_SelectEntered:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_SelectExited:
     m_PersistentCalls:
       m_Calls: []
@@ -311,7 +323,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f739e465ebb8ca34cb2e566db7529099, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!64 &-4101329059596254645
+--- !u!64 &-3192050078813053209
 MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

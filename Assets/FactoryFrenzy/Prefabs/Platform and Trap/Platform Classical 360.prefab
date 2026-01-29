@@ -12,9 +12,8 @@ GameObject:
   - component: {fileID: -7720431621683229771}
   - component: {fileID: -1763221911259337946}
   - component: {fileID: 939853239110670248}
-  - component: {fileID: 4156687478130270826}
-  - component: {fileID: -8386265986237156057}
-  - component: {fileID: -1687631990010809723}
+  - component: {fileID: 1170245658573072546}
+  - component: {fileID: -2735750945130898282}
   m_Layer: 0
   m_Name: Platform Classical 360
   m_TagString: Untagged
@@ -121,7 +120,19 @@ MonoBehaviour:
       m_Calls: []
   m_SelectEntered:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1170245658573072546}
+        m_TargetAssemblyTypeName: VRFeedbackManager, Assembly-CSharp
+        m_MethodName: GrabRight
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_SelectExited:
     m_PersistentCalls:
       m_Calls: []
@@ -235,7 +246,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f739e465ebb8ca34cb2e566db7529099, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &4156687478130270826
+--- !u!114 &1170245658573072546
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -244,35 +255,25 @@ MonoBehaviour:
   m_GameObject: {fileID: 4652329573806549489}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 56efd760c63929c47a361a97102ccaef, type: 3}
+  m_Script: {fileID: 11500000, guid: 497b3429a35a4b2479890aa2ca8daaa0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  snapGroup: 1
-  pivot: {fileID: 6581443949971158542}
---- !u!114 &-8386265986237156057
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4652329573806549489}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e061fe2b09e6fdd4698560965ad17f16, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  smartMode: 1
-  rotationStep: 10
-  extraSnapRadius: 0.05
-  snapPointLayer:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  inputSource: 5
-  toggleButton: 6
-  toggleThreshold: 0.1
-  snapRotationToPoint: 1
-  markSnapPointOccupied: 1
---- !u!64 &-1687631990010809723
+  audioSource: {fileID: 0}
+  sfxSpawn: {fileID: 0}
+  sfxDelete: {fileID: 0}
+  sfxGrab: {fileID: 0}
+  sfxDeleteMode: {fileID: 0}
+  leftController: {fileID: 0}
+  rightController: {fileID: 0}
+  spawnAmplitude: 0.25
+  spawnDuration: 0.08
+  deleteAmplitude: 0.7
+  deleteDuration: 0.12
+  grabAmplitude: 0.12
+  grabDuration: 0.05
+  modeAmplitude: 0.2
+  modeDuration: 0.06
+--- !u!64 &-2735750945130898282
 MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

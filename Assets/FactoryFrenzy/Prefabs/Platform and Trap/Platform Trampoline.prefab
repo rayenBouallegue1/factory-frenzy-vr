@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: -8339990036742684741}
   - component: {fileID: 395877043466455870}
   - component: {fileID: 4311065689709530956}
-  - component: {fileID: 7078226940264177438}
+  - component: {fileID: 290465331403940362}
   m_Layer: 0
   m_Name: Platform Trampoline
   m_TagString: Untagged
@@ -113,7 +113,19 @@ MonoBehaviour:
       m_Calls: []
   m_SelectEntered:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_SelectExited:
     m_PersistentCalls:
       m_Calls: []
@@ -227,7 +239,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f739e465ebb8ca34cb2e566db7529099, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!64 &7078226940264177438
+--- !u!64 &290465331403940362
 MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
