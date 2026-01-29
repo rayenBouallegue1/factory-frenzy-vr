@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: 4881111314664540788}
   - component: {fileID: 5466570138304828473}
   - component: {fileID: -5301949212350625770}
+  - component: {fileID: -1174031012392103468}
+  - component: {fileID: -6051117812930705912}
   m_Layer: 0
   m_Name: Platform Classical 80
   m_TagString: Untagged
@@ -120,10 +122,34 @@ MonoBehaviour:
       m_Calls: []
   m_SelectEntered:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: SelectableObject, Assembly-CSharp
+        m_MethodName: OnSelectEntered
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_SelectExited:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: SelectableObject, Assembly-CSharp
+        m_MethodName: OnSelectExited
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_FirstFocusEntered:
     m_PersistentCalls:
       m_Calls: []
@@ -246,7 +272,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56efd760c63929c47a361a97102ccaef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  snapGroup: 0
+  snapGroup: 1
   pivot: {fileID: 0}
 --- !u!114 &-5301949212350625770
 MonoBehaviour:
@@ -271,6 +297,40 @@ MonoBehaviour:
   toggleThreshold: 0.1
   snapRotationToPoint: 1
   markSnapPointOccupied: 1
+--- !u!114 &-1174031012392103468
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4652329573806549489}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15767deb68c3f154f8bfaa8150287c79, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!64 &-6051117812930705912
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4652329573806549489}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 0}
 --- !u!1001 &989502931268101848
 PrefabInstance:
   m_ObjectHideFlags: 0
