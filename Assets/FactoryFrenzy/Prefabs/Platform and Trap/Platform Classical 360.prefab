@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 939853239110670248}
   - component: {fileID: 4156687478130270826}
   - component: {fileID: -8386265986237156057}
+  - component: {fileID: -1687631990010809723}
   m_Layer: 0
   m_Name: Platform Classical 360
   m_TagString: Untagged
@@ -271,6 +272,28 @@ MonoBehaviour:
   toggleThreshold: 0.1
   snapRotationToPoint: 1
   markSnapPointOccupied: 1
+--- !u!64 &-1687631990010809723
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4652329573806549489}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 0}
 --- !u!1001 &2434701035180029003
 PrefabInstance:
   m_ObjectHideFlags: 0

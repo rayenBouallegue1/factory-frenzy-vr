@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 7871271582446337293}
   - component: {fileID: 2456507072486908300}
   - component: {fileID: -7593734770425396383}
+  - component: {fileID: -6080478655188568644}
   m_Layer: 0
   m_Name: Platform Classical 520
   m_TagString: Untagged
@@ -271,6 +272,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   snapGroup: 1
   pivot: {fileID: 6581443949971158542}
+--- !u!64 &-6080478655188568644
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4652329573806549489}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 0}
 --- !u!1001 &20160872169042945
 PrefabInstance:
   m_ObjectHideFlags: 0
