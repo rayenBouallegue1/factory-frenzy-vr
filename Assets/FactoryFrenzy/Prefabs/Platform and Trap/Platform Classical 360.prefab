@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: -1763221911259337946}
   - component: {fileID: 939853239110670248}
   - component: {fileID: 1170245658573072546}
+  - component: {fileID: -2735750945130898282}
   m_Layer: 0
   m_Name: Platform Classical 360
   m_TagString: Untagged
@@ -65,7 +66,7 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 0
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -261,6 +262,7 @@ MonoBehaviour:
   sfxSpawn: {fileID: 0}
   sfxDelete: {fileID: 0}
   sfxGrab: {fileID: 0}
+  sfxDeleteMode: {fileID: 0}
   leftController: {fileID: 0}
   rightController: {fileID: 0}
   spawnAmplitude: 0.25
@@ -269,9 +271,30 @@ MonoBehaviour:
   deleteDuration: 0.12
   grabAmplitude: 0.12
   grabDuration: 0.05
-  sfxDeleteMode: {fileID: 0}
   modeAmplitude: 0.2
   modeDuration: 0.06
+--- !u!64 &-2735750945130898282
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4652329573806549489}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 0}
 --- !u!1001 &2434701035180029003
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class LevelExporter : MonoBehaviour
 {
-    [Header("Default name if empty")]
+    [Header("Default prefix if empty")]
     [SerializeField] private string defaultLevelName = "MyLevel";
 
     public string LastExportPath { get; private set; }
@@ -12,9 +12,9 @@ public class LevelExporter : MonoBehaviour
 
     public void ExportWithName(string levelName)
     {
-        // 1) Nom par défaut si vide
+        // 1) Nom auto si vide (date + heure)
         if (string.IsNullOrWhiteSpace(levelName))
-            levelName = defaultLevelName;
+            levelName = GenerateAutoLevelName(defaultLevelName);
 
         levelName = SanitizeFileName(levelName);
 
@@ -29,12 +29,18 @@ public class LevelExporter : MonoBehaviour
         LastExportOverwrote = File.Exists(path);
 
         File.WriteAllText(path, json);
-
         LastExportPath = path;
 
         Debug.Log(LastExportOverwrote
             ? $"[LevelExporter]  Fichier écrasé => {path}"
             : $"[LevelExporter]  Export OK => {path}");
+    }
+
+    private string GenerateAutoLevelName(string prefix)
+    {
+        // Date + heure + minute (+ secondes pour éviter collisions)
+        string stamp = DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss");
+        return $"{prefix}_{stamp}";
     }
 
     private LevelData BuildLevelData(string levelName)
@@ -72,7 +78,6 @@ public class LevelExporter : MonoBehaviour
 
     private string CleanCloneName(string name)
     {
-        // Unity ajoute souvent "(Clone)" => on le retire
         return name.Replace("(Clone)", "").Trim();
     }
 }

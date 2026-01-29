@@ -4,27 +4,25 @@ using System.IO;
 
 public class LevelExportUI : MonoBehaviour
 {
-    [SerializeField] private TMP_InputField inputLevelName;
     [SerializeField] private TextMeshProUGUI statusText;
     [SerializeField] private LevelExporter exporter;
 
     public void Export()
     {
-        if (exporter == null || inputLevelName == null)
+        if (exporter == null)
         {
-            Debug.LogError("[LevelExportUI] Missing references (exporter or inputLevelName).");
+            Debug.LogError("[LevelExportUI] Missing reference: exporter.");
             return;
         }
 
-        string levelName = inputLevelName.text;
-        exporter.ExportWithName(levelName);
+        exporter.ExportWithName(""); // ignoré, le nom est auto
 
         if (statusText != null)
         {
             string file = Path.GetFileName(exporter.LastExportPath);
             statusText.text = exporter.LastExportOverwrote
-                ? $"Overwritten: {file}"
-                : $"Exported: {file}";
+                ? $" Overwritten: {file}"
+                : $" Exported: {file}";
         }
     }
 }

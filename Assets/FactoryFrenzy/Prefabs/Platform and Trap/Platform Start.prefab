@@ -95,6 +95,7 @@ GameObject:
   - component: {fileID: 1334230754548927444}
   - component: {fileID: -31948276212164226}
   - component: {fileID: 3702866710562466056}
+  - component: {fileID: -3192050078813053209}
   m_Layer: 0
   m_Name: Platform Start
   m_TagString: Untagged
@@ -142,7 +143,7 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 0
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -322,6 +323,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f739e465ebb8ca34cb2e566db7529099, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!64 &-3192050078813053209
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4652329573806549489}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 0}
 --- !u!1 &6872731319476190664
 GameObject:
   m_ObjectHideFlags: 0
